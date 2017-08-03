@@ -1,0 +1,26 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - echo Install any softwares here!
+  pre_build:
+    commands:
+      - echo send something before start timer maybe?
+      - mvn test
+  build:
+    commands:
+      - mvn verify -Dmaven.test.skip=true
+      - echo Run security scan
+      - echo send all report to SonarQube
+  post_build:
+    commands:
+      - echo Build completed on `date`
+artifacts:
+  files:
+    - target/*.jar
+    - appspec.yml
+    - buildspec.yml
+    - config/*
+    - codedeply/*
+    - cloudformation/*
